@@ -16,12 +16,65 @@ class CustomMessageCell: UITableViewCell {
     @IBOutlet var messageBody: UILabel!
     @IBOutlet var senderUsername: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-
+    
+    var message: Message? {
         
+        didSet {
+            
+            OperationQueue.main.addOperation { [unowned self] in
+                
+                if self.message?.sender == FirebaseAU().getUserEmail(){
+                    self.messageBackground.backgroundColor = UIColor.flatSkyBlue()
+                    self.senderUsername.textColor = UIColor.clear
+                    self.cornerForSelfMessageView()
+                    
+                }else{
+                    self.messageBackground.backgroundColor = UIColor.flatGray()
+                    self.senderUsername.textColor = UIColor.flatBlackColorDark()
+                    self.cornerForOtherMessageView()
+                    
+                }
+                
+                self.messageBackground.translatesAutoresizingMaskIntoConstraints = false
+                self.messageBody.text = self.message?.messageBody ?? ""
+                self.senderUsername.text = self.message?.sender ?? ""
+            }
+            
+        }
         
     }
+    
+    
+    func cornerForSelfMessageView(){
+        self.messageBackground.clipsToBounds = true
+        self.messageBackground.layer.cornerRadius = 15
+        if #available(iOS 11.0, *) {
+            self.messageBackground.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+            
+        } else {
+            // Fallback on earlier versions
+            self.messageBackground.roundCorners(corners: [.topLeft, .bottomLeft], radius: 15.0)
+        }
+    }
+    
+    func cornerForOtherMessageView(){
+        self.messageBackground.clipsToBounds = true
+        self.messageBackground.layer.cornerRadius = 15
+        if #available(iOS 11.0, *) {
+            self.messageBackground.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner, .layerMaxXMinYCorner]
+            
+        } else {
+            // Fallback on earlier versions
+            self.messageBackground.roundCorners(corners: [.topRight, .bottomRight], radius: 15.0)
+        }
+    }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
 
 
 }

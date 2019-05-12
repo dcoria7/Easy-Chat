@@ -23,6 +23,7 @@
 		4387427E2284FF9B00FB349E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387427D2284FF9B00FB349E /* CustomMessageCell.swift */; };
 		438742842285035000FB349E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4387425E2284F93E00FB349E /* GoogleService-Info.plist */; };
 		438742852285035000FB349E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4387425F2284F93E00FB349E /* Info.plist */; };
+		43F457AF2287814400C8F187 /* MessageSelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43F457AE2287814300C8F187 /* MessageSelfCell.xib */; };
 		875D36C396B90BA4728FECC7 /* Pods_Easy_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2599475FE0595C229878DBCE /* Pods_Easy_Chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		438742652284F93E00FB349E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		438742732284FBDF00FB349E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4387427D2284FF9B00FB349E /* CustomMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMessageCell.swift; path = "Controllers/Chat cell/CustomMessageCell.swift"; sourceTree = "<group>"; };
+		43F457AE2287814300C8F187 /* MessageSelfCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSelfCell.xib; sourceTree = "<group>"; };
 		6321A9B61B94EBA10053D2E7 /* Easy Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59F69664C75306A2D8DB4D5 /* Pods-Easy Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Easy Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Easy Chat/Pods-Easy Chat.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,11 +119,20 @@
 		438742832284FFE800FB349E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				43F457AC228772E700C8F187 /* MessageCell */,
 				438742732284FBDF00FB349E /* LaunchScreen.storyboard */,
-				438742612284F93E00FB349E /* MessageCell.xib */,
 				438742622284F93E00FB349E /* Main.storyboard */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		43F457AC228772E700C8F187 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				438742612284F93E00FB349E /* MessageCell.xib */,
+				43F457AE2287814300C8F187 /* MessageSelfCell.xib */,
+			);
+			name = MessageCell;
 			sourceTree = "<group>";
 		};
 		591B7C826AE3076C0D348773 /* Frameworks */ = {
@@ -194,7 +205,7 @@
 				TargetAttributes = {
 					6321A9B51B94EBA10053D2E7 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 8F6HAN5RK7;
+						DevelopmentTeam = 354MFK8Z69;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
@@ -205,6 +216,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -224,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				438742842285035000FB349E /* GoogleService-Info.plist in Resources */,
+				43F457AF2287814400C8F187 /* MessageSelfCell.xib in Resources */,
 				438742852285035000FB349E /* Info.plist in Resources */,
 				438742442284ED6900FB349E /* Images.xcassets in Resources */,
 				438742702284F93E00FB349E /* Main.storyboard in Resources */,
@@ -421,7 +434,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8F6HAN5RK7;
+				DEVELOPMENT_TEAM = 354MFK8Z69;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -443,7 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8F6HAN5RK7;
+				DEVELOPMENT_TEAM = 354MFK8Z69;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

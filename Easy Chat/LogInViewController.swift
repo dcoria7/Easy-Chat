@@ -55,9 +55,8 @@ class LogInViewController: UIViewController {
     
     func loginOnDB(completion:@escaping (Bool) -> Void){
         
-        // spinner
         firebaseAU.loginDB(email: emailTextfield.text!, password: passwordTextfield.text!) { (success) in
-            completion(success)
+            if success { completion(success) }
         }
         
     }

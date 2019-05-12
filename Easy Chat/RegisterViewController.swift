@@ -14,7 +14,7 @@ import SVProgressHUD
 
 class RegisterViewController: UIViewController {
 
-    
+    let firebaseAU = FirebaseAU()
     //Pre-linked IBOutlets
 
     @IBOutlet var emailTextfield: UITextField!
@@ -52,15 +52,9 @@ class RegisterViewController: UIViewController {
     }
     
     func registerOnDB(completion:@escaping (Bool) -> Void){
-        Auth.auth().createUser(withEmail: emailTextfield.text!, password: passwordTextfield.text!) { (result, error) in
-            
-            if error != nil{
-                print(error!)
-                completion(false)
-            }else{
-                print("Registered")
-                completion(true)
-            }
+        
+        firebaseAU.registerUser(email: emailTextfield.text!, password: passwordTextfield.text!) { (success) in
+            if success { completion(success) }
         }
     }
     

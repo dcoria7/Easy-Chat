@@ -26,8 +26,17 @@ class FirebaseAU{
        
     }
 
-    public func registerUser(email: String, password: String){
-        
+    public func registerUser(email: String, password: String, completion:@escaping (Bool) -> Void){
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            
+            if error != nil{
+                print(error!)
+                completion(false)
+            }else{
+                print("Registered")
+                completion(true)
+            }
+        }
     }
     
     public func logoutDB( completion:@escaping(Bool) -> Void){

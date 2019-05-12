@@ -19,7 +19,6 @@ class ChatViewController: UIViewController {
     var messageArray : [Message] = [Message]()
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
-    @IBOutlet var sendButton: UIButton!
     @IBOutlet var messageTextfield: UITextField!
     @IBOutlet var messageTableView: UITableView!
     
@@ -30,6 +29,7 @@ class ChatViewController: UIViewController {
         
         messageTableView.delegate = self
         messageTableView.dataSource = self
+        messageTextfield.delegate = self
         
         NotificationCenter.default.addObserver(
             self,
@@ -46,7 +46,8 @@ class ChatViewController: UIViewController {
         
         self.hideKeyboardWhenTapedAround()
 
-        messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
+        messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMSGOtherCell")
+        messageTableView.register(UINib(nibName: "MessageSelfCell", bundle: nil), forCellReuseIdentifier: "customMSGSelfCell")
         configureTableView()
         self.retrieveMessages()
         
@@ -76,32 +77,7 @@ class ChatViewController: UIViewController {
     }
     
     func configureTableView(){
-        messageTableView.rowHeight = UITableView.automaticDimension
-        messageTableView.estimatedRowHeight = 120.0
         messageTableView.separatorStyle = .none
-    }
-    
-    @IBAction func sendPressed(_ sender: AnyObject) {
-        
-        
-        //TODO: Send the message to Firebase and save it in our database
-        sendButton.isEnabled = false
-        //messageTextfield.isEnabled = false
-        
-        let messageDic = ["Sender": FirebaseAU().getUserEmail(),
-                          "MessageBody": messageTextfield.text!]
-        FirebaseAU().sendingMessage(dic: messageDic) { (success) in
-            if success{
-                //self.messageTextfield.isEnabled = true
-                self.sendButton.isEnabled = true
-                self.messageTextfield.text = ""
-            }else{
-                
-            }
-        }
-        
-       
-        
     }
     
     func retrieveMessages(){
@@ -112,6 +88,7 @@ class ChatViewController: UIViewController {
             
             strongSelf.configureTableView()
             strongSelf.messageTableView.reloadData()
+            
         }
         
     }
@@ -126,22 +103,54 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
-        
-        if messageArray[indexPath.row].sender == FirebaseAU().getUserEmail(){
-            cell.avatarImageView.backgroundColor = UIColor.flatMint()
-            cell.messageBackground.backgroundColor = UIColor.flatSkyBlue()
-        }else{
-            cell.avatarImageView.backgroundColor = UIColor.flatWatermelon()
-            cell.messageBackground.backgroundColor = UIColor.flatGray()
+        guard let cellOther = tableView.dequeueReusableCell(withIdentifier: "customMSGOtherCell", for: indexPath) as? CustomMessageCell else {
+            return CustomMessageCell()
         }
-            cell.messageBody.text = messageArray[indexPath.row].messageBody
-            cell.senderUsername.text = messageArray[indexPath.row].sender
-            
-            cell.avatarImageView.image = UIImage(named: "egg")
         
-        return cell
+        guard let cellSelf = tableView.dequeueReusableCell(withIdentifier: "customMSGSelfCell", for: indexPath) as? CustomMessageCell else {
+            return CustomMessageCell()
+        }
+        if messageArray[indexPath.row].sender == FirebaseAU().getUserEmail(){
+            cellSelf.selectionStyle = .none
+            cellSelf.message = messageArray[indexPath.row]
+            
+            return cellSelf
+        }else{
+            cellOther.selectionStyle = .none
+            cellOther.message = messageArray[indexPath.row]
+            
+            return cellOther
+        }
+        
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    
+}
+
+extension ChatViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        //messageTextfield.isEnabled = false
+        
+        let messageDic = ["Sender": FirebaseAU().getUserEmail(),
+                          "MessageBody": messageTextfield.text!]
+        FirebaseAU().sendingMessage(dic: messageDic) { (success) in
+            if success{
+                //self.messageTextfield.isEnabled = true
+                self.messageTextfield.text = ""
+            }else{
+                
+            }
+        }
+        return true
+    }
 }
 
