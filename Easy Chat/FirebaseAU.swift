@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 class FirebaseAU{
     let messageDB = Database.database().reference().child("Messages")
+    var typeChat = String()
     
     public func loginDB(email: String, password: String, completion:@escaping (Bool) -> Void){
         
@@ -60,7 +61,7 @@ class FirebaseAU{
     
     public func sendingMessage(dic: [String:String], completion: @escaping(Bool) -> Void){
         
-        messageDB.childByAutoId().setValue(dic){
+        messageDB.child(typeChat).childByAutoId().setValue(dic){
             (error, reference) in
             if error != nil{
                 completion(false)
@@ -82,13 +83,27 @@ class FirebaseAU{
     }
     
     func getMessages(completion: @escaping(Message) -> Void){
-        messageDB.observe(.childAdded) { (snaphot) in
+        messageDB.child(typeChat).observe(.childAdded) { (snaphot) in
             let messageModel = Message()
             let snapshotValue = snaphot.value as! Dictionary<String,String>
             messageModel.messageBody = snapshotValue["MessageBody"]!
             messageModel.sender = snapshotValue["Sender"]!
             completion(messageModel)
         }
+    }
+    
+    func getListOfChats(completion: @escaping([String]) -> Void){
+        messageDB.observe(.value, with: { (snapshot) in
+            
+            var newItems = [String]()
+            
+            for item in snapshot.children {
+                let snap = item as! DataSnapshot
+                newItems.append(snap.key)
+            }
+            completion(newItems)
+        })
+        
     }
     
 }

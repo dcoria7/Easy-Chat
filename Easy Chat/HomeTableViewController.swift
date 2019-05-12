@@ -10,6 +10,9 @@ import SVProgressHUD
 
 class HomeTableViewController: UITableViewController {
 
+    let firebaseAU = FirebaseAU()
+    var chatArray = [String]()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         SVProgressHUD.dismiss()
@@ -18,6 +21,11 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        firebaseAU.getListOfChats(completion: { (valuesArray) in
+            print(valuesArray)
+            self.chatArray = valuesArray
+            self.tableView.reloadData()
+        })
         
     }
     
@@ -44,23 +52,32 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return chatArray.count
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        self.performSegue(withIdentifier: "goToChat", sender: self)
+        self.performSegue(withIdentifier: "goToChat", sender: indexPath)
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        // Configure the cell...
+        cell.textLabel?.text = chatArray[indexPath.row]
 
         return cell
     }
-    */
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChat"{
+            if let destController = segue.destination as? ChatViewController{
+                destController.chatName = chatArray[(sender as! NSIndexPath).row]
+            }
+        }
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

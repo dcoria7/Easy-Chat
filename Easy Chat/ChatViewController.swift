@@ -17,6 +17,9 @@ import ChameleonFramework
 class ChatViewController: UIViewController {
     
     var messageArray : [Message] = [Message]()
+    let firebaseAU = FirebaseAU()
+    
+    var chatName = String()
     
     @IBOutlet var heightConstraint: NSLayoutConstraint!
     @IBOutlet var messageTextfield: UITextField!
@@ -30,6 +33,8 @@ class ChatViewController: UIViewController {
         messageTableView.delegate = self
         messageTableView.dataSource = self
         messageTextfield.delegate = self
+        
+        self.title = chatName
         
         NotificationCenter.default.addObserver(
             self,
@@ -81,8 +86,8 @@ class ChatViewController: UIViewController {
     }
     
     func retrieveMessages(){
-        
-        FirebaseAU().retrieveMessagesFromDB { [weak self] messages in
+        self.firebaseAU.typeChat = chatName
+        self.firebaseAU.retrieveMessagesFromDB { [weak self] messages in
             guard let strongSelf = self else { return }
             strongSelf.messageArray = messages
             
@@ -142,7 +147,8 @@ extension ChatViewController: UITextFieldDelegate{
         
         let messageDic = ["Sender": FirebaseAU().getUserEmail(),
                           "MessageBody": messageTextfield.text!]
-        FirebaseAU().sendingMessage(dic: messageDic) { (success) in
+        self.firebaseAU.typeChat = chatName
+        self.firebaseAU.sendingMessage(dic: messageDic) { (success) in
             if success{
                 //self.messageTextfield.isEnabled = true
                 self.messageTextfield.text = ""
