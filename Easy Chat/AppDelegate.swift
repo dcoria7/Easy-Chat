@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import SVProgressHUD
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,6 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //TODO: Initialise and Configure your Firebase here:
         FirebaseApp.configure()
+        
+//        let ref = Database.database().reference()
+//        
+//        ref.child("chats").childByAutoId()
+        
+    
+        
         
         let email = UserDefaults.standard.string(forKey: "email")
         let password = UserDefaults.standard.string(forKey: "password")
@@ -38,6 +46,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        gai.tracker(withTrackingId: "UA-140302852-2")
+        // Optional: automatically report uncaught exceptions.
+        gai.trackUncaughtExceptions = true
+
+        // Optional: set Logger to VERBOSE for debug information.
+        // Remove before app release.
+        gai.logger.logLevel = .verbose;
+
         return true
     }
 

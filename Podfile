@@ -7,9 +7,16 @@ target 'Easy Chat' do
 
   # Pods for Flash Chat
 	pod 'Firebase/Core'
-	pod 'Firebase'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Database'
+    
+    # firebase analytics
+    pod 'Firebase'
+    pod 'Firebase/InAppMessagingDisplay'
+    
+    #google analytics
+    pod 'GoogleAnalytics'
+    
 	pod 'SVProgressHUD'
 	pod 'ChameleonFramework'
 
