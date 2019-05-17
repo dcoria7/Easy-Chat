@@ -11,6 +11,7 @@ import Firebase
 import FirebaseDatabase
 import SVProgressHUD
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -34,9 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "Home") as! HomeTableViewController
                 let nav = UINavigationController(rootViewController: homeViewController)
                 self.window!.rootViewController = nav
-                
+                Analytics.logEvent(AnalyticsEventLogin, parameters: nil)
             }
         }
+        
+        
         
         return true
     }

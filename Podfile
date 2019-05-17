@@ -12,6 +12,9 @@ target 'Easy Chat' do
 	pod 'Firebase/Database'
 	pod 'SVProgressHUD'
 	pod 'ChameleonFramework'
+    
+    #firebase analytics
+    pod 'Firebase/Analytics'
 
 
 

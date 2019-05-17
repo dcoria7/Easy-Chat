@@ -4,6 +4,8 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - Firebase (5.20.2):
     - Firebase/Core (= 5.20.2)
+  - Firebase/Analytics (5.20.2):
+    - Firebase/Core
   - Firebase/Auth (5.20.2):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.4.2)
@@ -77,6 +79,7 @@ PODS:
 DEPENDENCIES:
   - ChameleonFramework
   - Firebase
+  - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -115,6 +118,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: e26002466dfc952ad52d9b68786def06bd3d6731
+PODFILE CHECKSUM: eb8a734100a33501e02196d267e8a0c5bafedc66
 
 COCOAPODS: 1.5.3

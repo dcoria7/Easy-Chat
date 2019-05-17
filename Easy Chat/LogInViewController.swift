@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import SVProgressHUD
+import Firebase
 
 
 class LogInViewController: UIViewController {
@@ -56,7 +57,9 @@ class LogInViewController: UIViewController {
     func loginOnDB(completion:@escaping (Bool) -> Void){
         
         firebaseAU.loginDB(email: emailTextfield.text!, password: passwordTextfield.text!) { (success) in
-            if success { completion(success) }
+            if success { completion(success)
+                Analytics.logEvent(AnalyticsEventLogin, parameters: nil)
+            }
         }
         
     }
