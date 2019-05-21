@@ -10,7 +10,7 @@ import SVProgressHUD
 
 class HomeTableViewController: UITableViewController {
 
-    let firebaseAU = FirebaseAU()
+    //let firebaseAU = FirebaseAU()
     var chatArray = [String]()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,7 +21,7 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-        firebaseAU.getListOfChats(completion: { (valuesArray) in
+        FirebaseAU.sharedInstanceFirebase.getListOfChats(completion: { (valuesArray) in
             print(valuesArray)
             self.chatArray = valuesArray
             self.tableView.reloadData()
@@ -33,7 +33,7 @@ class HomeTableViewController: UITableViewController {
         
         //TODO: Log out the user and send them back to WelcomeViewController
         
-        FirebaseAU().logoutDB { (success) in
+        FirebaseAU.sharedInstanceFirebase.logoutDB { (success) in
             if success{
                 Defaults.clearUserData(key: "email")
                 Defaults.clearUserData(key: "password")

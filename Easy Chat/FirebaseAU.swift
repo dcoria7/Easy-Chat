@@ -9,7 +9,12 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 
+
 class FirebaseAU{
+    
+    private init() {}
+    static var sharedInstanceFirebase = FirebaseAU()
+    
     let messageDB = Database.database().reference().child("Messages")
     var typeChat = String()
     

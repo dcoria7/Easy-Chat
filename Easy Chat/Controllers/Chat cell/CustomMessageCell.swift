@@ -23,7 +23,7 @@ class CustomMessageCell: UITableViewCell {
             
             OperationQueue.main.addOperation { [unowned self] in
                 
-                if self.message?.sender == FirebaseAU().getUserEmail(){
+                if self.message?.sender == FirebaseAU.sharedInstanceFirebase.getUserEmail(){
                     self.messageBackground.backgroundColor = UIColor.flatSkyBlue()
                     self.senderUsername.textColor = UIColor.clear
                     self.cornerForSelfMessageView()

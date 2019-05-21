@@ -17,7 +17,7 @@ import ChameleonFramework
 class ChatViewController: UIViewController {
     
     var messageArray : [Message] = [Message]()
-    let firebaseAU = FirebaseAU()
+    //let firebaseAU = FirebaseAU()
     
     var chatName = String()
     
@@ -86,8 +86,8 @@ class ChatViewController: UIViewController {
     }
     
     func retrieveMessages(){
-        self.firebaseAU.typeChat = chatName
-        self.firebaseAU.retrieveMessagesFromDB { [weak self] messages in
+        FirebaseAU.sharedInstanceFirebase.typeChat = chatName
+        FirebaseAU.sharedInstanceFirebase.retrieveMessagesFromDB { [weak self] messages in
             guard let strongSelf = self else { return }
             strongSelf.messageArray = messages
             
@@ -115,7 +115,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cellSelf = tableView.dequeueReusableCell(withIdentifier: "customMSGSelfCell", for: indexPath) as? CustomMessageCell else {
             return CustomMessageCell()
         }
-        if messageArray[indexPath.row].sender == FirebaseAU().getUserEmail(){
+        if messageArray[indexPath.row].sender == FirebaseAU.sharedInstanceFirebase.getUserEmail(){
             cellSelf.selectionStyle = .none
             cellSelf.message = messageArray[indexPath.row]
             
@@ -145,10 +145,11 @@ extension ChatViewController: UITextFieldDelegate{
         
         //messageTextfield.isEnabled = false
         
-        let messageDic = ["Sender": FirebaseAU().getUserEmail(),
+        let messageDic = ["Sender": FirebaseAU.sharedInstanceFirebase.getUserEmail(),
                           "MessageBody": messageTextfield.text!]
-        self.firebaseAU.typeChat = chatName
-        self.firebaseAU.sendingMessage(dic: messageDic) { (success) in
+        //self.firebaseAU.typeChat = chatName
+        FirebaseAU.sharedInstanceFirebase.typeChat = chatName
+        FirebaseAU.sharedInstanceFirebase.sendingMessage(dic: messageDic) { (success) in
             if success{
                 //self.messageTextfield.isEnabled = true
                 self.messageTextfield.text = ""

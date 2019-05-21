@@ -18,7 +18,7 @@ class LogInViewController: UIViewController {
     @IBOutlet var emailTextfield: UITextField!
     @IBOutlet var passwordTextfield: UITextField!
     
-    let firebaseAU = FirebaseAU()
+    //let firebaseAU = FirebaseAU()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class LogInViewController: UIViewController {
     
     func loginOnDB(completion:@escaping (Bool) -> Void){
         
-        firebaseAU.loginDB(email: emailTextfield.text!, password: passwordTextfield.text!) { (success) in
+        FirebaseAU.sharedInstanceFirebase.loginDB(email: emailTextfield.text!, password: passwordTextfield.text!) { (success) in
             if success { completion(success) }
         }
         

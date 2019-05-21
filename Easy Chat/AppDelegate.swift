@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if email != nil && password != nil{
             // spinner
             SVProgressHUD.show()
-            FirebaseAU().loginDB(email: email!, password: password!) { (success) in
+            FirebaseAU.sharedInstanceFirebase.loginDB(email: email!, password: password!) { (success) in
                 
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: "Home") as! HomeTableViewController

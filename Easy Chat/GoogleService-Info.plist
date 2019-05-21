@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>420766725892-2ca1dldb94m9v23tcg8i9dkv8g3hlu82.apps.googleusercontent.com</string>
+	<string>598922235631-59pdtaapesdsq1ndbab7np1g0epamlpp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.420766725892-2ca1dldb94m9v23tcg8i9dkv8g3hlu82</string>
+	<string>com.googleusercontent.apps.598922235631-59pdtaapesdsq1ndbab7np1g0epamlpp</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDvrq0jtIKS9AZMbjaMH8S9MZ-9xSR6eDY</string>
+	<string>AIzaSyDtk97c4QtvZokkN4hR5E2cV4A2KniwJDE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>420766725892</string>
+	<string>598922235631</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.DC.Flash-Chat</string>
+	<string>com.DC.Easychat</string>
 	<key>PROJECT_ID</key>
-	<string>flash-chat-efd44</string>
+	<string>easychat-92895</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flash-chat-efd44.appspot.com</string>
+	<string>easychat-92895.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:420766725892:ios:84da33f27d006223</string>
+	<string>1:598922235631:ios:04bda506bafabe0f</string>
 	<key>DATABASE_URL</key>
-	<string>https://flash-chat-efd44.firebaseio.com</string>
+	<string>https://easychat-92895.firebaseio.com</string>
 </dict>
 </plist>
