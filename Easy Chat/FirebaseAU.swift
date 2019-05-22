@@ -12,13 +12,14 @@ import FirebaseDatabase
 
 class FirebaseAU{
     
-    private init() {}
-    static var sharedInstanceFirebase = FirebaseAU()
+    
+    static let sharedInstanceFirebase = FirebaseAU()
     
     let messageDB = Database.database().reference().child("Messages")
     var typeChat = String()
+    private init() {}
     
-    public func loginDB(email: String, password: String, completion:@escaping (Bool) -> Void){
+    func loginDB(email: String, password: String, completion:@escaping (Bool) -> Void){
         
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil{
@@ -32,7 +33,7 @@ class FirebaseAU{
        
     }
 
-    public func registerUser(email: String, password: String, completion:@escaping (Bool) -> Void){
+    func registerUser(email: String, password: String, completion:@escaping (Bool) -> Void){
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             
             if error != nil{
@@ -45,7 +46,7 @@ class FirebaseAU{
         }
     }
     
-    public func logoutDB( completion:@escaping(Bool) -> Void){
+    func logoutDB( completion:@escaping(Bool) -> Void){
         do {
             try Auth.auth().signOut()
             completion(true)
@@ -55,7 +56,7 @@ class FirebaseAU{
         }
     }
     
-    public func getUserEmail() -> String{
+    func getUserEmail() -> String{
         if ((Auth.auth().currentUser) != nil){
             return (Auth.auth().currentUser?.email)!
         }else{
@@ -64,7 +65,7 @@ class FirebaseAU{
         
     }
     
-    public func sendingMessage(dic: [String:String], completion: @escaping(Bool) -> Void){
+    func sendingMessage(dic: [String:String], completion: @escaping(Bool) -> Void){
         
         messageDB.child(typeChat).childByAutoId().setValue(dic){
             (error, reference) in
@@ -78,7 +79,7 @@ class FirebaseAU{
         }
     }
     
-    public func retrieveMessagesFromDB(completion:@escaping([Message]) -> Void){
+    func retrieveMessagesFromDB(completion:@escaping([Message]) -> Void){
         var messageArray = [Message]()
         getMessages { (message) in
             messageArray.append(message)
