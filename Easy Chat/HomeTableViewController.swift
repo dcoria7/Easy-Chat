@@ -42,7 +42,17 @@ class HomeTableViewController: UITableViewController {
         }
         
     }
-
+    @IBAction func addChannel(_ sender: Any) {
+        self.displayMessageWithTextField(title: "Agregar nuevo chat", msg: "Nombre del chat", style: .alert) { (result) in
+            if let result = result {
+                // create and push to chat
+                self.chatArray.append(result)
+                let indexPath = IndexPath(item: self.chatArray.count - 1 , section: 0)
+                self.performSegue(withIdentifier: "goToChat", sender: indexPath)
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

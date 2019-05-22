@@ -264,6 +264,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="n8u-bX-uSq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="yM3-Zi-UQe">
+                            <connections>
+                                <action selector="addChannel:" destination="3cA-bT-yrY" id="UHb-5V-6QY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="mz9-8w-6zi">
                             <connections>
                                 <action selector="logOutPressed:" destination="3cA-bT-yrY" id="3eO-vd-ozn"/>

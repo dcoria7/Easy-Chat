@@ -23,6 +23,7 @@
 		4387427E2284FF9B00FB349E /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387427D2284FF9B00FB349E /* CustomMessageCell.swift */; };
 		438742842285035000FB349E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4387425E2284F93E00FB349E /* GoogleService-Info.plist */; };
 		438742852285035000FB349E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4387425F2284F93E00FB349E /* Info.plist */; };
+		4387F56D2295FD6D0002B465 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387F56C2295FD6D0002B465 /* Extensions.swift */; };
 		43F457AF2287814400C8F187 /* MessageSelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43F457AE2287814300C8F187 /* MessageSelfCell.xib */; };
 		875D36C396B90BA4728FECC7 /* Pods_Easy_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2599475FE0595C229878DBCE /* Pods_Easy_Chat.framework */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		438742652284F93E00FB349E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		438742732284FBDF00FB349E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4387427D2284FF9B00FB349E /* CustomMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomMessageCell.swift; path = "Controllers/Chat cell/CustomMessageCell.swift"; sourceTree = "<group>"; };
+		4387F56C2295FD6D0002B465 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		43F457AE2287814300C8F187 /* MessageSelfCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageSelfCell.xib; sourceTree = "<group>"; };
 		6321A9B61B94EBA10053D2E7 /* Easy Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59F69664C75306A2D8DB4D5 /* Pods-Easy Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Easy Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Easy Chat/Pods-Easy Chat.release.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				438742642284F93E00FB349E /* Message.swift */,
 				438742652284F93E00FB349E /* Helpers.swift */,
+				4387F56C2295FD6D0002B465 /* Extensions.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				4387426B2284F93E00FB349E /* RegisterViewController.swift in Sources */,
 				438742662284F93E00FB349E /* ChatViewController.swift in Sources */,
 				438742692284F93E00FB349E /* LogInViewController.swift in Sources */,
+				4387F56D2295FD6D0002B465 /* Extensions.swift in Sources */,
 				438742472284ED6900FB349E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

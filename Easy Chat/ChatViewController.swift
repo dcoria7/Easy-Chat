@@ -166,6 +166,21 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource{
 extension ChatViewController: UITextViewDelegate{
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if(text == "\n")
+        {
+            let messageDic = ["Sender": FirebaseAU.sharedInstanceFirebase.getUserEmail(),
+                              "MessageBody": messageTextView.text!]
+            FirebaseAU.sharedInstanceFirebase.typeChat = chatName
+            FirebaseAU.sharedInstanceFirebase.sendingMessage(dic: messageDic) { (success) in
+                if success{
+                    //self.messageTextfield.isEnabled = true
+                    self.messageTextView.text = ""
+                }else{
+                    
+                }
+            }
+        }
         return true
     }
     
@@ -173,22 +188,22 @@ extension ChatViewController: UITextViewDelegate{
         messageTextView.frame.size.height = textView.contentSize.height //+ self.heightConstraint.constant
         messageTextView.isScrollEnabled = false
     }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        //messageTextfield.isEnabled = false
-        
-        let messageDic = ["Sender": FirebaseAU.sharedInstanceFirebase.getUserEmail(),
-                          "MessageBody": messageTextView.text!]
-        FirebaseAU.sharedInstanceFirebase.typeChat = chatName
-        FirebaseAU.sharedInstanceFirebase.sendingMessage(dic: messageDic) { (success) in
-            if success{
-                //self.messageTextfield.isEnabled = true
-                self.messageTextView.text = ""
-            }else{
-                
-            }
-        }
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        
+//        //messageTextfield.isEnabled = false
+//        
+//        let messageDic = ["Sender": FirebaseAU.sharedInstanceFirebase.getUserEmail(),
+//                          "MessageBody": messageTextView.text!]
+//        FirebaseAU.sharedInstanceFirebase.typeChat = chatName
+//        FirebaseAU.sharedInstanceFirebase.sendingMessage(dic: messageDic) { (success) in
+//            if success{
+//                //self.messageTextfield.isEnabled = true
+//                self.messageTextView.text = ""
+//            }else{
+//                
+//            }
+//        }
+//        return true
+//    }
 }
 
