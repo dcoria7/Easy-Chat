@@ -21,27 +21,22 @@ class CustomMessageCell: UITableViewCell {
         
         didSet {
             
-            OperationQueue.main.addOperation { [unowned self] in
+            if self.message?.sender == FirebaseAU.sharedInstanceFirebase.getUserEmail(){
+                self.messageBackground.backgroundColor = UIColor.flatSkyBlue()
+                self.senderUsername.textColor = UIColor.clear
+                self.cornerForSelfMessageView()
                 
-                if self.message?.sender == FirebaseAU.sharedInstanceFirebase.getUserEmail(){
-                    self.messageBackground.backgroundColor = UIColor.flatSkyBlue()
-                    self.senderUsername.textColor = UIColor.clear
-                    self.cornerForSelfMessageView()
-                    
-                }else{
-                    self.messageBackground.backgroundColor = UIColor.flatGray()
-                    self.senderUsername.textColor = UIColor.flatBlackColorDark()
-                    self.cornerForOtherMessageView()
-                    
-                }
+            }else{
+                self.messageBackground.backgroundColor = UIColor.flatGray()
+                self.senderUsername.textColor = UIColor.flatBlackColorDark()
+                self.cornerForOtherMessageView()
                 
-                self.messageBackground.translatesAutoresizingMaskIntoConstraints = false
-                self.messageBody.text = self.message?.messageBody ?? ""
-                self.senderUsername.text = self.message?.sender ?? ""
             }
             
+            self.messageBackground.translatesAutoresizingMaskIntoConstraints = false
+            self.messageBody.text = self.message?.messageBody ?? ""
+            self.senderUsername.text = self.message?.sender ?? ""
         }
-        
     }
     
     

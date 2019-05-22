@@ -89,12 +89,14 @@ class FirebaseAU{
     }
     
     func getMessages(completion: @escaping(Message) -> Void){
-        messageDB.child(typeChat).observe(.childAdded) { (snaphot) in
-            let messageModel = Message()
-            let snapshotValue = snaphot.value as! Dictionary<String,String>
-            messageModel.messageBody = snapshotValue["MessageBody"]!
-            messageModel.sender = snapshotValue["Sender"]!
-            completion(messageModel)
+        OperationQueue.main.addOperation { [unowned self] in
+            self.messageDB.child(self.typeChat).observe(.childAdded) { (snaphot) in
+                let messageModel = Message()
+                let snapshotValue = snaphot.value as! Dictionary<String,String>
+                messageModel.messageBody = snapshotValue["MessageBody"]!
+                messageModel.sender = snapshotValue["Sender"]!
+                completion(messageModel)
+            }
         }
     }
     
